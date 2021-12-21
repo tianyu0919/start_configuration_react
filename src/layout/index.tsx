@@ -3,9 +3,7 @@ import Navigation from './Navigation';
 
 const Layout = () => {
   return (
-    <Navigation />
-
+    <Navigation title="归宿网" />
   )
 }
-
 export default Layout;

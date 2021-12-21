@@ -43,13 +43,24 @@ module.exports = {
         },
       },
       {
-        test: /\.(css|scss|less)$/,
+        test: /\.css$/,
+        // * 排除业务模块，其他模块都不采用 css modules 方式解析
+        exclude: [/src/],
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(css|scss|sass|less)$/,
+        exclude: /node_modules/,
         use: [
           'style-loader',
           {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
+              modules: {
+                mode: 'local',
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
             },
           },
           {

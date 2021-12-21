@@ -1,4 +1,6 @@
 import React, { FC, useState, useEffect, useCallback } from 'react'
+// import './index.scss';
+import style from './index.module.scss';
 import { Menu } from 'antd';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 
@@ -7,9 +9,10 @@ interface Props {
   title?: string
 }
 
-const Navigation: FC<Props> = ({ title = 'aaa' }) => {
+const Navigation: FC<Props> = ({ title = 'aaa' } = {}) => {
   useEffect(() => {
     console.log(title);
+    console.log(style)
   }, [])
 
   const [current, setCurrent] = useState('mail')
@@ -17,8 +20,8 @@ const Navigation: FC<Props> = ({ title = 'aaa' }) => {
     setCurrent(e.key);
   }, []);
   return (
-    <header>
-      <div className="title">
+    <header className={style.header}>
+      <div className={style.title}>
         {title}
       </div>
       <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">

@@ -24,7 +24,7 @@ const Navigation: FC<Props> = ({ title = 'aaa' } = {}) => {
       <div className={style.title}>
         {title}
       </div>
-      <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+      <Menu className={style.ant_menu_horizontal} onClick={handleClick} selectedKeys={[current]} mode="horizontal">
         <Menu.Item key="mail" icon={<MailOutlined />}>
           Navigation One
         </Menu.Item>

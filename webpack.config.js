@@ -11,6 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
+    publicPath: '/'
   },
   optimization: {
     splitChunks: {
@@ -30,6 +31,7 @@ module.exports = {
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@layout': path.resolve(__dirname, 'src/layout'),
       '@assets': path.resolve(__dirname, 'src/assets'),
+      '@ming': path.resolve(__dirname, 'src/mingming'),
     },
     extensions: ['.js', '.jsx', '.tsx'],
   },

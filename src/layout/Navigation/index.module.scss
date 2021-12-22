@@ -3,8 +3,22 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #f0f0f0;
+  $logo_width: 120px;
+  
+
+  .ant_menu_horizontal {
+    line-height: 60px;
+    border: none;
+  }
 
   .title {
-    color: red;
+    min-width: $logo_width;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    height: 100%;
+    line-height: 60px;
   }
 }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack-dev-server",
+    "start": "npx webpack-dev-server --mode=development",
     "build": "webpack ./src/index.js --mode=production"
   },
   "author": "",
@@ -27,6 +27,7 @@
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.5.0",
     "html-webpack-plugin": "^4.5.2",
+    "mini-css-extract-plugin": "^2.4.5",
     "postcss": "^8.4.5",
     "postcss-loader": "^4.3.0",
     "postcss-preset-env": "^7.0.2",

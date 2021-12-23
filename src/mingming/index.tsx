@@ -10,7 +10,9 @@ export default function Layout() {
   return (
     <div className={style.container}>
       <div className={style.content}>
-        <div className={style.item}>
+        <div className={style.item} onClick={() => {
+          console.log(style);
+        }}>
           <img className={style.img} src={box1} />
           <div className={style.title}>
             <span>空间幻影盒</span>

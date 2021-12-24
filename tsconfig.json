@@ -48,6 +48,9 @@
       "@assets/*": [
         "./src/assets/*"
       ],
+      "@fonts/*": [
+        "./src/fonts/*"
+      ],
       "@ming/*": [
         "./src/mingming/*"
       ]

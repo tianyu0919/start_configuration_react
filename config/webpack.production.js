@@ -4,14 +4,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const querystring = require('./querystring');
-const isProduction = querystring(process.argv.slice(2), '--mode', 'production');
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/index.js'),
+  mode: 'production',
+  entry: path.resolve(__dirname, '../src/index.js'),
   devtool: 'eval-source-map',
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, '../build'),
     filename: 'js/[name].bundle.js',
     publicPath: '/',
   },
@@ -28,13 +27,13 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@utils': path.resolve(__dirname, 'src/utils'),
-      '@pages': path.resolve(__dirname, 'src/pages'),
-      '@layout': path.resolve(__dirname, 'src/layout'),
-      '@assets': path.resolve(__dirname, 'src/assets'),
-      '@fonts': path.resolve(__dirname, 'src/fonts'),
-      '@ming': path.resolve(__dirname, 'src/mingming'),
+      '@components': path.resolve(__dirname, '../src/components'),
+      '@utils': path.resolve(__dirname, '../src/utils'),
+      '@pages': path.resolve(__dirname, '../src/pages'),
+      '@layout': path.resolve(__dirname, '../src/layout'),
+      '@assets': path.resolve(__dirname, '../src/assets'),
+      '@fonts': path.resolve(__dirname, '../src/fonts'),
+      '@ming': path.resolve(__dirname, '../src/mingming'),
     },
     extensions: ['.js', '.jsx', '.tsx'],
   },
@@ -60,6 +59,7 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
+            // loader: 'style-loader',
           },
           {
             loader: 'css-loader',
@@ -113,7 +113,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './public/index.html'),
+      template: path.resolve(__dirname, '../public/index.html'),
       inject: 'body',
       title: '自定义React配置',
     }),
@@ -123,10 +123,10 @@ module.exports = {
         files: './src/**/*.{ts,tsx,js,jsx}',
       },
     }),
-    // * 分离 css 到指定目录
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash:8].css',
       chunkFilename: 'css/[name].[hash:8].css',
     }),
-  ].concat(isProduction ? [new BundleAnalyzerPlugin()] : []),
+    new BundleAnalyzerPlugin(),
+  ],
 };

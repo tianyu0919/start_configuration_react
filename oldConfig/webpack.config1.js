@@ -1,18 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// const ESlintPlugin = require('eslint-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-// const CopyPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const proConfig = require('./webpack.production');
-// const querystring = require('./querystring');
-// const isDevelopment = querystring(process.argv.slice(2), '--mode', 'development');
-// console.log(isDevelopment);
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const querystring = require('./querystring');
+const isProduction = querystring(process.argv.slice(2), '--mode', 'production');
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/index.js'),
-  devtool: 'source-map',
+  // entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.resolve(__dirname, './src/components/AudioControl/index.tsx'),
+  // entry: path.resolve(__dirname, './jsx/components/AudioControl/index.jsx'),
+  // devtool: 'eval-source-map',
+  devtool: 'eval-cheap-source-map',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'js/[name].bundle.js',
@@ -20,7 +20,7 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      // chunks: 'all',
     },
   },
   devServer: {
@@ -36,6 +36,7 @@ module.exports = {
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@layout': path.resolve(__dirname, 'src/layout'),
       '@assets': path.resolve(__dirname, 'src/assets'),
+      '@fonts': path.resolve(__dirname, 'src/fonts'),
       '@ming': path.resolve(__dirname, 'src/mingming'),
     },
     extensions: ['.js', '.jsx', '.tsx'],
@@ -61,7 +62,8 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
+            // loader: isProduction ? 'style-loader' : MiniCssExtractPlugin.loader,
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
@@ -92,8 +94,20 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              outputPath: "img",
-              publicPath: "/img"
+              outputPath: 'img',
+              publicPath: '/img',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ttf)/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'fonts',
+              publicPath: '/fonts',
             },
           },
         ],
@@ -107,25 +121,21 @@ module.exports = {
       inject: 'body',
       title: '自定义React配置',
     }),
-    // new ESlintPlugin({
-    //   context: path.resolve(__dirname, './src'),
-    //   extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
-    //   exclude: 'node_modules',
-    //   eslintPath: require.resolve('eslint'),
-    // }),
     // * 用来检查代码错误，会启用 eslint ，eslint 配置在了 package.json 中
     new ForkTsCheckerWebpackPlugin({
       eslint: {
         files: './src/**/*.{ts,tsx,js,jsx}',
       },
     }),
-    // new CopyPlugin({
-    //   patterns: [{ from: path.resolve(__dirname, './src/assets'), to: 'assets' }],
-    // }),
-    // * 分离 css 到指定目录
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash:8].css',
-      chunkFilename: 'css/[name].[hash:8].css',
-    }),
-  ],
+  ].concat(
+    isProduction ?
+      [new BundleAnalyzerPlugin()] :
+      [
+        // * 分离 css 到指定目录
+        // new MiniCssExtractPlugin({
+        //   filename: 'css/[name].[hash:8].css',
+        //   chunkFilename: 'css/[name].[hash:8].css',
+        // }),
+      ]
+  ),
 };

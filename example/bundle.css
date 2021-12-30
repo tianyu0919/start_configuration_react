@@ -1,0 +1,189 @@
+.index_AudioControl__QdGXo {
+  --color-border: rgba(28, 31, 35, 0.08);
+  --color-fill-0: rgba(46, 50, 56, 0.05);
+  --blue-3: 101, 178, 252;
+  --blue-4: 50, 149, 251;
+  --blue-5: 0, 119, 250;
+  width: 100vw;
+  position: fixed;
+  right: 0;
+  bottom: -59px;
+  height: 60px;
+  border: 1px solid var(--color-border);
+  background-color: #fff;
+  z-index: 1;
+  transition: bottom 0.3s;
+}
+.index_AudioControl__QdGXo.index_show__ySgs9 {
+  bottom: 0;
+}
+.index_AudioControl__QdGXo .index_showAudioControl__J7j5x {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-100%);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  font-size: 20px;
+  line-height: 26px;
+  text-align: center;
+  z-index: 1;
+  background-color: #fff;
+}
+.index_AudioControl__QdGXo .index_showAudioControl__J7j5x svg {
+  width: 90%;
+  height: 90%;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_leftContent__r-lMh {
+  width: 90px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  color: rgba(var(--blue-5), 1);
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_leftContent__r-lMh .index_play_pause__RnCrN {
+  font-size: 26px;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: calc(100% - 100px - 10px);
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_slide__mkGcK {
+  height: 10px;
+  border-radius: 5px;
+  margin-right: 20px;
+  width: calc(100% - 10px);
+  position: relative;
+  background-color: var(--color-fill-0);
+  cursor: pointer;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_slide__mkGcK:before, .index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_slide__mkGcK:after {
+  content: "";
+  position: absolute;
+  transition: all 0.2s;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_slide__mkGcK:before {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--val);
+  background-color: rgba(var(--blue-3), 1);
+  border-radius: inherit;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_slide__mkGcK .index_sliderBar__MXeZL {
+  content: "";
+  position: absolute;
+  transition: all 0.2s;
+  top: 50%;
+  left: var(--val);
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background-color: rgba(var(--blue-4), 1);
+  transform: translate(-50%, -50%);
+  will-change: left;
+  cursor: pointer;
+  pointer-events: none;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_slide__mkGcK .index_sliderBar__MXeZL:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_slide__mkGcK .index_Tips__E8Pft {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  pointer-events: none;
+  min-width: 30px;
+  min-height: 32px;
+  padding: 6px 8px;
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  word-wrap: break-word;
+  background-color: #000000bf;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+  will-change: left;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_slide__mkGcK .index_Tips__E8Pft::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-width: 5px;
+  border-color: #000000bf transparent transparent transparent;
+  bottom: -10px;
+  box-shadow: 3px 3px 7px #00000012;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_slide__mkGcK:hover .index_Tips__E8Pft {
+  display: block;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_timer_box__Wdbkj {
+  min-width: 44px;
+  text-align: center;
+  margin-right: 20px;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_double_speed__-vci6 {
+  width: 80px;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #c1c1c1;
+  cursor: pointer;
+  position: relative;
+  border-radius: 10px;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_double_speed__-vci6.index_hover__rYiHB:before {
+  content: "";
+  width: 100%;
+  transform: translate(-50%, -50%);
+  height: 24px;
+  left: 50%;
+  display: block;
+  position: absolute;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_double_speed__-vci6.index_hover__rYiHB .index_speed_list__DBQ5g {
+  display: block;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_double_speed__-vci6 .index_speed_list__DBQ5g {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  word-wrap: break-word;
+  background-color: #000000bf;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+  display: none;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_double_speed__-vci6 .index_speed_list__DBQ5g .index_speed_item__7Od0V {
+  text-align: center;
+  padding: 3px 8px;
+  box-sizing: border-box;
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_double_speed__-vci6 .index_speed_list__DBQ5g .index_speed_item__7Od0V.index_active__oPKj8 {
+  color: rgba(var(--blue-3), 1);
+}
+.index_AudioControl__QdGXo .index_control__0uU-N .index_rightContent__dyd-O .index_double_speed__-vci6 .index_speed_list__DBQ5g .index_speed_item__7Od0V:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

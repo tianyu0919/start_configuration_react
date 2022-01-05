@@ -5,7 +5,7 @@ import AudioControl from '@components/AudioControl';
 import { Button } from 'antd';
 
 const Layout = () => {
-  const [audioList] = useState(['sczz.mp3', 'roar.mp3'])
+  const [audioList] = useState(['sczz.mp3', 'roar.mp3', 'xxx.mp3'])
   const [currentAudio, setCurrentAudio] = useState<string>('');
 
   const useRandom = (min: number, max: number): number => {
@@ -13,17 +13,25 @@ const Layout = () => {
   }
 
   useEffect(() => {
-    let random = useRandom(0, audioList.length);
-    setCurrentAudio(audioList[random]);
+    // let random = useRandom(0, audioList.length);
+    // setCurrentAudio(audioList[random]);
+    console.log(currentAudio)
   }, [])
   return (
     <>
       <Navigation title="归宿网" />
       <Button onClick={() => {
         let random = useRandom(0, audioList.length);
-        setCurrentAudio(audioList[random]);
+        setCurrentAudio(`http://localhost:9000/assets/audio/${audioList[random]}`);
       }}>切换音频</Button>
-      <AudioControl src={`http://localhost:9000/assets/audio/${currentAudio}`} />
+      {/* <AudioControl src={`http://localhost:9000/assets/audio/${currentAudio}`} /> */}
+      <AudioControl
+        show
+        src={`${currentAudio}`}
+        error={(e: Event, msg: string) => {
+          console.log(e, msg);
+        }}
+      />
     </>
   )
 }

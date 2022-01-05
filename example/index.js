@@ -4,6 +4,6 @@ import AudioControl from "./bundle";
 import "./bundle.css";
 
 ReactDom.render(
-  <AudioControl src={`http://localhost:9000/assets/audio/hi.mp3`} />,
+  <AudioControl src={`http://localhost:9000/assets/audio/sczz.mp3`} />,
   document.getElementById("app")
 );

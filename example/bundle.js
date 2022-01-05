@@ -1,30 +1,30 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   LockOutlined,
   UnlockOutlined,
   FastBackwardOutlined,
   PauseCircleOutlined,
   PlayCircleOutlined,
-  FastForwardOutlined,
-} from "@ant-design/icons";
+  FastForwardOutlined
+} from '@ant-design/icons';
 
-var style = {
-  AudioControl: "index_AudioControl__QdGXo",
-  show: "index_show__ySgs9",
-  showAudioControl: "index_showAudioControl__J7j5x",
-  control: "index_control__0uU-N",
-  leftContent: "index_leftContent__r-lMh",
-  play_pause: "index_play_pause__RnCrN",
-  rightContent: "index_rightContent__dyd-O",
-  slide: "index_slide__mkGcK",
-  sliderBar: "index_sliderBar__MXeZL",
-  Tips: "index_Tips__E8Pft",
-  timer_box: "index_timer_box__Wdbkj",
-  double_speed: "index_double_speed__-vci6",
-  hover: "index_hover__rYiHB",
-  speed_list: "index_speed_list__DBQ5g",
-  speed_item: "index_speed_item__7Od0V",
-  active: "index_active__oPKj8",
+let style = {
+  AudioControl: 'index_AudioControl__QdGXo',
+  show: 'index_show__ySgs9',
+  showAudioControl: 'index_showAudioControl__J7j5x',
+  control: 'index_control__0uU-N',
+  leftContent: 'index_leftContent__r-lMh',
+  play_pause: 'index_play_pause__RnCrN',
+  rightContent: 'index_rightContent__dyd-O',
+  slide: 'index_slide__mkGcK',
+  sliderBar: 'index_sliderBar__MXeZL',
+  Tips: 'index_Tips__E8Pft',
+  timer_box: 'index_timer_box__Wdbkj',
+  double_speed: 'index_double_speed__-vci6',
+  hover: 'index_hover__rYiHB',
+  speed_list: 'index_speed_list__DBQ5g',
+  speed_item: 'index_speed_item__7Od0V',
+  active: 'index_active__oPKj8',
 };
 
 const AudioControl = React.forwardRef((props, forwardRef) => {
@@ -33,15 +33,15 @@ const AudioControl = React.forwardRef((props, forwardRef) => {
   const [audioDuration, setAudioDuration] = useState(0);
   const [audioCurrentTime, setAudioCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [tipsTime, setTipsTime] = useState("");
+  const [tipsTime, setTipsTime] = useState('');
   const [tipsOffset, setTipsOffset] = useState(0);
   const [speedList] = useState([2.0, 1.5, 1.25, 1.0, 0.75, 0.5]);
   const [currentSpeed, setCurrentSpeed] = useState(1.0);
   const [isHover, setIsHover] = useState(false);
   let audio = React.createRef();
-  const formatTimer = useCallback((timer) => {
-    const minute = `${Math.floor(timer / 60)}`.padStart(2, "0");
-    const seconds = `${Math.floor(timer % 60)}`.padStart(2, "0");
+  const formatTimer = useCallback(timer => {
+    const minute = `${Math.floor(timer / 60)}`.padStart(2, '0');
+    const seconds = `${Math.floor(timer % 60)}`.padStart(2, '0');
     return `${minute}:${seconds}`;
   }, []);
   useEffect(() => {
@@ -54,9 +54,9 @@ const AudioControl = React.forwardRef((props, forwardRef) => {
     setIsPlaying(false);
   }, [props.src]);
   return React.createElement(
-    "div",
+    'div',
     {
-      className: [style.AudioControl, show ? style.show : ""].join(" "),
+      className: [style.AudioControl, show ? style.show : ''].join(' '),
       onMouseEnter: () => {
         setShow(true);
         // props.isShow(true);
@@ -70,8 +70,8 @@ const AudioControl = React.forwardRef((props, forwardRef) => {
         }
       },
     },
-    React.createElement("audio", {
-      ref: (r) => {
+    React.createElement('audio', {
+      ref: r => {
         if (forwardRef) {
           forwardRef.current = r;
         }
@@ -85,36 +85,34 @@ const AudioControl = React.forwardRef((props, forwardRef) => {
       onPause: () => {
         setIsPlaying(false);
       },
-      onCanPlay: (e) => {
+      onCanPlay: e => {
         const { duration } = e.target;
         setAudioDuration(Math.floor(duration));
       },
-      onTimeUpdate: (e) => {
+      onTimeUpdate: e => {
         const { currentTime } = e.target;
         setAudioCurrentTime(Math.floor(currentTime));
       },
       onEnded: () => {
-        console.log("播放完毕");
+        console.log('播放完毕');
         // props.pauseAudio(props.audioIndex);
       },
     }),
     React.createElement(
-      "span",
+      'span',
       {
         className: style.showAudioControl,
         onClick: () => {
           setLock(!lock);
         },
       },
-      lock
-        ? React.createElement(LockOutlined, null)
-        : React.createElement(UnlockOutlined, null)
+      lock ? React.createElement(LockOutlined, null) : React.createElement(UnlockOutlined, null)
     ),
     React.createElement(
-      "div",
+      'div',
       { className: style.control },
       React.createElement(
-        "div",
+        'div',
         { className: style.leftContent },
         React.createElement(FastBackwardOutlined, {
           onClick: () => {
@@ -126,29 +124,29 @@ const AudioControl = React.forwardRef((props, forwardRef) => {
           },
         }),
         React.createElement(
-          "div",
+          'div',
           { className: style.play_pause },
-          isPlaying
-            ? React.createElement(PauseCircleOutlined, {
-                onClick: () => {
-                  const { current } = audio;
-                  if (current) {
-                    if (!current.paused) {
-                      current.pause();
-                    }
+          isPlaying ?
+            React.createElement(PauseCircleOutlined, {
+              onClick: () => {
+                const { current } = audio;
+                if (current) {
+                  if (!current.paused) {
+                    current.pause();
                   }
-                },
-              })
-            : React.createElement(PlayCircleOutlined, {
-                onClick: () => {
-                  const { current } = audio;
-                  if (current) {
-                    if (current.paused) {
-                      current.play();
-                    }
+                }
+              },
+            }) :
+            React.createElement(PlayCircleOutlined, {
+              onClick: () => {
+                const { current } = audio;
+                if (current) {
+                  if (current.paused) {
+                    current.play();
                   }
-                },
-              })
+                }
+              },
+            })
         ),
         React.createElement(FastForwardOutlined, {
           onClick: () => {
@@ -161,56 +159,54 @@ const AudioControl = React.forwardRef((props, forwardRef) => {
         })
       ),
       React.createElement(
-        "div",
+        'div',
         { className: style.rightContent },
         React.createElement(
-          "div",
+          'div',
           {
             className: style.slide,
-            style: { "--val": `${(audioCurrentTime / audioDuration) * 100}%` },
-            onClick: (e) => {
-              const target = e.target;
+            style: { '--val': `${(audioCurrentTime / audioDuration) * 100}%` },
+            onClick: e => {
+              const { target } = e;
               const { offsetX } = e.nativeEvent;
-              const width = target.getBoundingClientRect().width;
+              const { width } = target.getBoundingClientRect();
               const time = (offsetX / width) * audioDuration;
               const audioEle = audio.current;
               if (audio.current) {
                 audioEle.currentTime = time;
               }
             },
-            onMouseMove: (e) => {
-              const target = e.target;
+            onMouseMove: e => {
+              const { target } = e;
               const { offsetX } = e.nativeEvent;
-              const width = target.getBoundingClientRect().width;
+              const { width } = target.getBoundingClientRect();
               const time = (offsetX / width) * audioDuration;
               setTipsTime(time);
               setTipsOffset(offsetX);
             },
           },
           React.createElement(
-            "div",
+            'div',
             { className: style.Tips, style: { left: `${tipsOffset}px` } },
             formatTimer(tipsTime)
           ),
-          React.createElement("div", { className: style.sliderBar })
+          React.createElement('div', { className: style.sliderBar })
         ),
         React.createElement(
-          "div",
+          'div',
           { className: style.timer_box },
           React.createElement(
-            "span",
+            'span',
             { className: style.timer },
             formatTimer(audioCurrentTime),
-            ":",
+            ':',
             formatTimer(audioDuration)
           )
         ),
         React.createElement(
-          "div",
+          'div',
           {
-            className: [style.double_speed, isHover ? style.hover : ""].join(
-              " "
-            ),
+            className: [style.double_speed, isHover ? style.hover : ''].join(' '),
             onMouseEnter: () => {
               setIsHover(true);
             },
@@ -219,26 +215,23 @@ const AudioControl = React.forwardRef((props, forwardRef) => {
             },
           },
           currentSpeed,
-          "x",
+          'x',
           React.createElement(
-            "div",
+            'div',
             { className: style.speed_list },
             speedList.map((v, i) =>
               React.createElement(
-                "div",
+                'div',
                 {
                   key: i,
-                  className: [
-                    style.speed_item,
-                    currentSpeed === v ? style.active : "",
-                  ].join(" "),
+                  className: [style.speed_item, currentSpeed === v ? style.active : ''].join(' '),
                   onClick: () => {
                     setCurrentSpeed(v);
                     setIsHover(false);
                   },
                 },
                 v,
-                "x"
+                'x'
               )
             )
           )

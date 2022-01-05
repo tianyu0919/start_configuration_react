@@ -47,10 +47,10 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss|sass|less)$/,
         // * 排除业务模块，其他模块都不采用 css modules 方式解析
         exclude: [/src/],
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(css|scss|sass|less)$/,
@@ -125,5 +125,5 @@ module.exports = {
       filename: 'css/[name].[hash:8].css',
       chunkFilename: 'css/[name].[hash:8].css',
     }),
-  ]
+  ],
 };

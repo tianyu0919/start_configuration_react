@@ -13,7 +13,7 @@ const Navigation: FC<Props> = ({ title = 'aaa' } = {}) => {
   useEffect(() => {
     console.log(title);
     console.log(style)
-  }, [])
+  }, [title])
 
   const [current, setCurrent] = useState('mail')
   const handleClick = useCallback((e) => {

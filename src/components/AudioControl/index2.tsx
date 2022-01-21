@@ -31,7 +31,7 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
     if (current) {
       current.playbackRate = currentSpeed;
     }
-  }, [currentSpeed]);
+  }, [audio, currentSpeed]);
   
   useEffect(() => {
     setIsPlaying(false);

@@ -45,6 +45,7 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
     if (current) {
       current.playbackRate = currentSpeed;
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSpeed]);
 
   useEffect(() => {
@@ -58,6 +59,7 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
     if (!props.src) {
       setErrorMsg('请先设置播放路径');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.src])
 
   // * 显示播放器
@@ -70,6 +72,7 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
       setShow(true);
       setLock(true);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.show])
 
   return (

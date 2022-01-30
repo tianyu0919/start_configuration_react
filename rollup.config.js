@@ -20,5 +20,5 @@ export default {
       extract: true,
     }),
   ],
-  external: ['react', '@ant-design/icons', '@douyinfe/semi-ui'],
+  external: ['react', '@ant-design/icons', '@douyinfe/semi-ui'], // * 包含什么包，不打包该内容，直接引用
 };

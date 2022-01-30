@@ -78,7 +78,11 @@ export default function Index() {
       </div>
       <div className={style.bodyContainer} ref={bodyContainer}>
         {new Array(100).fill(1).map((v, i) => {
-          return <div key={i} className={style.items} />
+          return <div key={i} className={style.items} onClick={(e) => {
+            const target = e.target as HTMLElement;
+            const { clientX, offsetX } = e.nativeEvent;
+            console.log(clientX, offsetX, target.getBoundingClientRect().left)
+          }} />
         })}
       </div>
     </div>

@@ -157,7 +157,7 @@
         &:after {
           content: "";
           position: absolute;
-          transition: all .2s;
+          // transition: all .2s;
         }
 
         &:before {
@@ -172,7 +172,7 @@
         .sliderBar {
           content: "";
           position: absolute;
-          transition: all .2s;
+          // transition: all .2s;
           top: 50%;
           left: var(--val);
           height: 14px;
@@ -223,7 +223,7 @@
           }
         }
 
-        &:hover {
+        &.hover {
           .Tips {
             display: block;
           }

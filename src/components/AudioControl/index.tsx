@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, CSSProperties } from 'react';
+import React, { useEffect, useState, useCallback, useRef, CSSProperties } from 'react';
 import style from './index.scss';
 import { IconLock, IconUnlock, IconPause, IconPlay, IconBackward, IconFastForward } from '@douyinfe/semi-icons';
 
@@ -31,8 +31,11 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
   const [isHover, setIsHover] = useState(false);
   const [haveError, setHaveError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [isDrop, setIsDrop] = useState(false);
+  const [isSliderHover, setIsSliderHover] = useState(false);
 
-  let audio: { current: HTMLAudioElement | null } = React.createRef();
+  let audio: { current: HTMLAudioElement | null } = useRef(null);
+  let slider: { current: HTMLDivElement | null } = useRef(null);
 
   const formatTimer = useCallback(timer => {
     const minute = `${Math.floor(timer / 60)}`.padStart(2, '0');
@@ -45,7 +48,7 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
     if (current) {
       current.playbackRate = currentSpeed;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSpeed]);
 
   useEffect(() => {
@@ -59,7 +62,7 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
     if (!props.src) {
       setErrorMsg('请先设置播放路径');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.src])
 
   // * 显示播放器
@@ -72,8 +75,44 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
       setShow(true);
       setLock(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.show])
+
+  useEffect(() => {
+    document.onmouseup = () => {
+      document.onmousemove = null;
+      setIsDrop(false);
+      if (audio.current) {
+        const audioEle = audio.current as HTMLAudioElement;
+        audioEle.play();
+      }
+    };
+
+    document.onmousemove = (e) => {
+      const sliderDom = slider.current;
+      if (sliderDom && (isDrop || isSliderHover)) {
+        // console.log('123', isDrop, isSliderHover);
+        const { clientX } = e;
+        const { width, left } = sliderDom.getBoundingClientRect();
+        let offsetX = clientX - left;
+        if (offsetX < 0) {
+          offsetX = 0;
+        } else if (offsetX > width) {
+          offsetX = width;
+        }
+        const time = (offsetX / width) * audioDuration;
+        setTipsTime(time);
+        setTipsOffset(offsetX);
+        if (isDrop) {
+          if (audio.current) {
+            const audioEle = audio.current as HTMLAudioElement;
+            audioEle.pause();
+            audioEle.currentTime = time;
+          }
+        }
+      }
+    }
+  }, [slider, isDrop, audioDuration, isSliderHover]);
 
   return (
     <div
@@ -192,7 +231,8 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
           }} />
         </div>
         <div className={style.rightContent}>
-          <div className={style.slide}
+          <div className={[style.slide, (isSliderHover || isDrop) ? style.hover : ''].join(' ')}
+            ref={slider}
             style={{ '--val': `${(audioCurrentTime / audioDuration) * 100}%` } as CSSProperties}
             onClick={(e) => {
               const target = e.target as HTMLElement;
@@ -204,15 +244,33 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
                 audioEle.currentTime = time;
               }
             }}
-            onMouseMove={(e) => {
-              const target = e.target as HTMLElement;
-              const { offsetX } = e.nativeEvent;
-              const width = target.getBoundingClientRect().width;
-              const time = (offsetX / width) * audioDuration;
-              setTipsTime(time);
-              setTipsOffset(offsetX);
-            }}>
-            <div className={style.Tips} style={{ left: `${tipsOffset}px` }}>{formatTimer(tipsTime)}</div>
+            onMouseDown={() => {
+              setIsDrop(true);
+            }}
+            onMouseEnter={() => {
+              setIsSliderHover(true);
+            }}
+            onMouseLeave={() => {
+              setIsSliderHover(false);
+            }}
+          // onMouseMove={(e) => {
+          //   const target = e.target as HTMLElement;
+          //   const { clientX } = e.nativeEvent;
+          //   const { width, left } = target.getBoundingClientRect();
+          //   const offsetX = clientX - left;
+          //   const time = (offsetX / width) * audioDuration;
+          //   setTipsTime(time);
+          //   setTipsOffset(offsetX);
+
+          //   if (isDrop) {
+          //     if (audio.current) {
+          //       const audioEle = audio.current as HTMLAudioElement;
+          //       audioEle.currentTime = time;
+          //     }
+          //   }
+          // }}
+          >
+            {(isDrop || isSliderHover) ? <div className={style.Tips} style={{ left: `${tipsOffset}px` }}>{formatTimer(tipsTime)}</div> : <></>}
             <div className={style.sliderBar} />
           </div>
           <div className={style.timer_box}>

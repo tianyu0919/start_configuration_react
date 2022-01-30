@@ -28,12 +28,16 @@
       justify-content: space-between;
       align-items: center;
 
-      --w: calc((100% - 40px) / 10 - 10px);
-
       .items {
         width: var(--w);
         height: var(--w);
         border: 1px solid red;
+        transition: all .3s;
+
+        &.active {
+          background-color: red;
+          // transition: none;
+        }
       }
     }
   }

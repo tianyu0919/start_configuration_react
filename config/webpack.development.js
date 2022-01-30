@@ -34,7 +34,7 @@ module.exports = {
       '@fonts': path.resolve(__dirname, '../src/fonts'),
       '@ming': path.resolve(__dirname, '../src/mingming'),
     },
-    extensions: ['.js', '.jsx', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     rules: [
@@ -119,6 +119,7 @@ module.exports = {
     new ForkTsCheckerWebpackPlugin({
       eslint: {
         files: './src/**/*.{ts,tsx,js,jsx}',
+        exclude: ['../**/*.d.ts'],
       },
     }),
     new MiniCssExtractPlugin({

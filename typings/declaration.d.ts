@@ -12,3 +12,7 @@ declare module '*.png' {
   const content: string;
   export default content;
 }
+
+// declare module '@utils/Throttle' {
+//   export default function Throttle(callback: any, delay: number): void;
+// } 

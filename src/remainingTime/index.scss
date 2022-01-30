@@ -1,0 +1,40 @@
+.container {
+  width: 80%;
+  margin: auto;
+  padding-top: 30px;
+  box-sizing: border-box;
+
+  .title {
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .bodyOuterBox {
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .bodyTitle {
+      // border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    .bodyContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+
+      --w: calc((100% - 40px) / 10 - 10px);
+
+      .items {
+        width: var(--w);
+        height: var(--w);
+        border: 1px solid red;
+      }
+    }
+  }
+}

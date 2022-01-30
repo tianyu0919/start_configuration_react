@@ -65,6 +65,9 @@
     "ie >= 4",
     "Firefox > 10"
   ],
+  "eslintIgnore": [
+    "*.d.ts"
+  ],
   "eslintConfig": {
     "env": {
       "browser": true,

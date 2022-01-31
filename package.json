@@ -4,35 +4,59 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack-dev-server",
-    "build": "webpack ./src/index.js"
+    "start": "webpack-dev-server --config ./config/webpack.development.js",
+    "build": "webpack --config ./config/webpack.production.js",
+    "build:rollup": "npx rollup --config ./rollup.config.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "@babel/preset-typescript": "^7.16.5",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.2",
     "@types/react": "^17.0.37",
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.2.0",
     "css-loader": "^5.2.7",
+    "eslint": "^8.5.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-webpack-plugin": "^3.1.1",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.5.0",
     "html-webpack-plugin": "^4.5.2",
+    "mini-css-extract-plugin": "^2.4.5",
     "postcss": "^8.4.5",
     "postcss-loader": "^4.3.0",
     "postcss-preset-env": "^7.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "rollup": "^2.62.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
     "sass": "^1.45.0",
-    "sass-loader": "^10.2.0",
+    "sass-loader": "^12.4.0",
     "style-loader": "^2.0.0",
-    "ts-loader": "^4.5.0",
     "typescript": "^4.5.4",
-    "webpack": "^4.46.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.65.0",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@douyinfe/semi-ui": "^2.2.2",
+    "@types/react-dom": "^17.0.11",
+    "antd": "^4.17.3",
+    "react-hot-loader": "^4.13.0",
+    "react-router-dom": "^6.2.1"
   },
   "browserslist": [
     "last 1 version",
@@ -41,8 +65,32 @@
     "ie >= 4",
     "Firefox > 10"
   ],
-  "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "antd": "^4.17.3"
-  }
+  "eslintIgnore": [
+    "*.d.ts"
+  ],
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "extends": [
+      "plugin:react-hooks/recommended"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "react-hooks"
+    ],
+    "globals": {},
+    "rules": {
+      "no-unused-vars": 2,
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    }
+  },
+  "fork-ts-checker": {}
 }

@@ -11,7 +11,9 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+      "program": "node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+      "args": [
+      ]
     },
     {
       "type": "pwa-node",

@@ -1,0 +1,33 @@
+// @import url('https://fonts.googleapis.com/css2?family=Pushster&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@200&family=Pushster&display=swap');
+@font-face {
+  font-family: 'Pushster';
+  src: url('@fonts/Pushster/Pushster-Regular.ttf')
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #f0f0f0;
+  $logo_width: 120px;
+
+
+  .ant_menu_horizontal {
+    line-height: 60px;
+    border: none;
+  }
+
+  .title {
+    min-width: $logo_width;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    height: 100%;
+    line-height: 60px;
+    font-family: 'Pushster',
+      cursive;
+  }
+}

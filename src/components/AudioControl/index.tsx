@@ -34,6 +34,7 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
   const [isDrop, setIsDrop] = useState(false);
   const [isSliderHover, setIsSliderHover] = useState(false);
 
+  let outBox: { current: HTMLDivElement | null } = useRef(null);
   let audio: { current: HTMLAudioElement | null } = useRef(null);
   let slider: { current: HTMLDivElement | null } = useRef(null);
 
@@ -79,14 +80,22 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
   }, [props.show])
 
   useEffect(() => {
+    const { current } = outBox;
+    if (current) {
+      current.onmouseup = () => {
+        // document.onmousemove = null;
+        // setIsDrop(false);
+        if (audio.current) {
+          const audioEle = audio.current as HTMLAudioElement;
+          audioEle.play();
+        }
+      };
+    }
+
     document.onmouseup = () => {
       document.onmousemove = null;
       setIsDrop(false);
-      if (audio.current) {
-        const audioEle = audio.current as HTMLAudioElement;
-        audioEle.play();
-      }
-    };
+    }
 
     document.onmousemove = (e) => {
       const sliderDom = slider.current;
@@ -117,6 +126,7 @@ const AudioControl = React.forwardRef((props: Props, forwardRef: any) => {
   return (
     <div
       className={[style.AudioControl, show ? style.show : ''].join(' ')}
+      ref={outBox}
       onMouseEnter={() => {
         setShow(true);
         const { isShow } = props;

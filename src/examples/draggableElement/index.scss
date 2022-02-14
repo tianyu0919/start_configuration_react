@@ -1,0 +1,57 @@
+.outBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+  .container {
+    width: 90vw;
+    height: 90vh;
+    border: 1px solid #000;
+    overflow: auto;
+
+    .row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      &+.row {
+        .column {
+          border-top: 1px solid #ccc;
+        }
+      }
+
+      .column {
+        white-space: nowrap;
+        padding: 5px;
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+
+        .item {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          pointer-events: none;
+          align-items: center;
+        }
+
+        &.current {
+          color: red;
+        }
+
+        &.add {
+          .item {
+            border: 1px solid green;
+          }
+        }
+
+        &+.column {
+          border-left: 1px solid #ccc;
+        }
+      }
+    }
+  }
+}

@@ -26,13 +26,14 @@ module.exports = {
   },
   resolve: {
     alias: {
+      '@src': path.resolve(__dirname, '../src'),
       '@components': path.resolve(__dirname, '../src/components'),
       '@utils': path.resolve(__dirname, '../src/utils'),
       '@pages': path.resolve(__dirname, '../src/pages'),
       '@layout': path.resolve(__dirname, '../src/layout'),
       '@assets': path.resolve(__dirname, '../src/assets'),
       '@fonts': path.resolve(__dirname, '../src/fonts'),
-      '@ming': path.resolve(__dirname, '../src/mingming'),
+      '@examples': path.resolve(__dirname, '../src/examples'),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },

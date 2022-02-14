@@ -198,6 +198,7 @@ function initCanvas(CanvasElement: HTMLCanvasElement, options: initCanvasOptions
       }, delay)
     }
   }
+
   window.onresize = resizeFn(300);
   if (ctx) {
     console.log(options.ballOptions);

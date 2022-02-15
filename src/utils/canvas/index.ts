@@ -201,7 +201,7 @@ function initCanvas(CanvasElement: HTMLCanvasElement, options: initCanvasOptions
 
   window.onresize = resizeFn(300);
   if (ctx) {
-    console.log(options.ballOptions);
+    // console.log(options.ballOptions);
     const { number, distance, ballOptions } = options;
     for (let i = 0; i < number!; i++) {
       let ball = new initBall(w, h, ctx, distance!, ballOptions!);
@@ -209,7 +209,7 @@ function initCanvas(CanvasElement: HTMLCanvasElement, options: initCanvasOptions
       ballArr.push(ball);
     }
     const { lineColor } = ballOptions;
-    console.log(lineColor)
+    // console.log(lineColor)
     animateInstance = new Animate(ballArr, ctx, w, h);
     animateInstance.lineColor = [...lineColor!];
 

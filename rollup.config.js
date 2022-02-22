@@ -4,11 +4,11 @@ import typescript from 'rollup-plugin-typescript2'; // * 用来处理 ts 的
 import postcss from 'rollup-plugin-postcss'; // * 用来处理 css 的
 
 export default {
-  // input: './src/components/AudioControl/index.tsx',
-  input: './src/utils/canvas/index.ts',
+  input: './src/components/AudioControl/index.tsx',
+  // input: './src/utils/canvas/index.ts',
   output: {
     file: 'rollup/bundle.js',
-    format: 'es',
+    format: 'es', // * [cjs(CommonJS), amd(异步模块化定义), umd(通用模块化定义), es(esModule), system(原生格式), iif(自执行函数)]
   },
   plugins: [
     resolve(),

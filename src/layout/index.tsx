@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from './Navigation';
 import AudioControl from '@components/AudioControl';
-// import AudioControl from '../../rollup/bundle.js';
 // import '../../rollup/bundle.css';
 
 import { Button } from 'antd';

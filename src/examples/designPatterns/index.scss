@@ -1,0 +1,11 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Element{
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+}

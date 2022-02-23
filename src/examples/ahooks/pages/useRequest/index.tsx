@@ -12,14 +12,3 @@ export default function UseRequest() {
     </>
   )
 }
-
-// export default class UseRequest extends React.Component {
-//   constructor(props: any) {
-//     super(props);
-//     console.log(useRequest);
-//   }
-
-//   render() {
-//     return <div>useRequest</div>
-//   }
-// }

@@ -1,21 +1,43 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import routerItems, { routesProps } from './router.js';
+import React, { useEffect } from 'react';
+import { HashRouter, useRoutes, useNavigate } from 'react-router-dom';
+import routerItems from './router';
+import { Button } from 'antd';
 
-import A from './pages/useRequest';
+// import A from './pages/useRequest';
 
-export default function AHooks() {
+function AHooks() {
   return (
-    <BrowserRouter>
-      <div>
-        <h2>关于ahooks的例子</h2>
-        <Routes>
-          {/* {routerItems.map((v: routesProps, i: number) => {
-            <Route key={i} path={v.path} element={v.page} />
-          })} */}
-          <Route path='/' element={<A />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <HashRouter>
+      <Content />
+    </HashRouter>
   )
 }
+
+function Content() {
+  const navigate = useNavigate();
+  const elements = useRoutes(routerItems);
+
+  useEffect(() => {
+    // console.log(routerItems)
+  }, [])
+
+  return (
+    <div>
+      <h2>关于ahooks的例子</h2>
+      {['/', '/home', '/about'].map((v, i) => <Button key={i} onClick={() => navigate(v)}>跳转到{v}</Button>)}
+      {elements}
+      {/* <Routes> */}
+      {/* {routerItems.map((v: routesProps, i: number) => {
+          <Route key={i} path={v.path} element={v.page}></Route>
+        })} */}
+      {/* <Route path='/' element={<div>首页</div>} /> */}
+      {/* <Route path='*' element={<div>not found</div>} /> */}
+      {/* <Route path='/' element={<A />} />
+        <Route path='/home' element={<div>home</div>} />
+        <Route path='/about' element={<div>about</div>} /> */}
+      {/* </Routes> */}
+    </div>
+  )
+}
+
+export default AHooks;

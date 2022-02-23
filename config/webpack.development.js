@@ -44,8 +44,16 @@ module.exports = {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
-          plugins: [require.resolve('react-refresh/babel')], // * 热更新模块
+          presets: [
+            // ['@babel/preset-env', { corejs: 2, useBuiltIns: 'usage' }],
+            '@babel/preset-env',
+            '@babel/preset-react',
+            '@babel/preset-typescript',
+          ],
+          plugins: [
+            require.resolve('react-refresh/babel'),
+            // '@babel/plugin-transform-runtime'
+          ], // * 热更新模块
           sourceMaps: 'inline',
         },
       },

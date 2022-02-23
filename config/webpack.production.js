@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -116,12 +115,6 @@ module.exports = {
       template: path.resolve(__dirname, '../public/index.html'),
       inject: 'body',
       title: '自定义React配置',
-    }),
-    // * 用来检查代码错误，会启用 eslint ，eslint 配置在了 package.json 中
-    new ForkTsCheckerWebpackPlugin({
-      eslint: {
-        files: './src/**/*.{ts,tsx,js,jsx}',
-      },
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash:8].css',

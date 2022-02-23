@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -19,7 +20,7 @@ module.exports = {
     },
   },
   devServer: {
-    hot: true,
+    hot: true, // * 貌似使用 webpack-dev-server 开启，自动有 hot 写不写都可以，如果没写其他热更新插件，保存则刷新这个页面且页面状态消失，如果家了其他热更新模块，例如 @pmmmwh/react-refresh-webpack-plugin，则只更新修改部分，页面状态保留。
     compress: true,
     port: 3000,
     open: true,
@@ -44,6 +45,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+          plugins: [require.resolve('react-refresh/babel')], // * 热更新模块
           sourceMaps: 'inline',
         },
       },
@@ -110,6 +112,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new ReactRefreshPlugin(), // * React 专用 热更新
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../public/index.html'),
@@ -120,9 +123,10 @@ module.exports = {
     new ForkTsCheckerWebpackPlugin({
       eslint: {
         files: './src/**/*.{ts,tsx,js,jsx}',
-        exclude: ['../**/*.d.ts'],
+        exclude: ['./**/*.d.ts'],
       },
     }),
+    // * 单独分离 css 文件。
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash:8].css',
       chunkFilename: 'css/[name].[hash:8].css',

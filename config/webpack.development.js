@@ -52,9 +52,10 @@ module.exports = {
           ],
           plugins: [
             require.resolve('react-refresh/babel'),
-            // '@babel/plugin-transform-runtime'
+            '@babel/plugin-transform-runtime'
           ], // * 热更新模块
           sourceMaps: 'inline',
+          sourceType: 'unambiguous'
         },
       },
       {

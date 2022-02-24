@@ -5,12 +5,20 @@ interface routesProps {
   page: any;
 }
 
-function GetElement(props: { src: string }) {
+function GetElement(props: { src: string }): any {
+  console.log(props);
   const { src } = props;
-  // let a = (async () => import(`./pages/${src}`))();
-  let a = <div>xx</div>
-  console.log(src)
-  console.log(a);
+  return new Promise(async (res) => {
+    let data = await import(`./pages/${src}`);
+    if (data.default) {
+      console.log(data.default);
+      // res(data.default);
+
+      // res(React.createElement(data.default));
+      res(<div>111</div>)
+    }
+    res(<div>没有找到</div>)
+  })
   return <div>xx</div>
 }
 
@@ -22,6 +30,10 @@ const routes: RouteObject[] = [
   {
     path: '/about',
     element: () => import('./pages/about'),
+  },
+  {
+    path: '*',
+    element: <div>not found</div>
   }
 ]
 

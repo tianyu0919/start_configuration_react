@@ -51,11 +51,11 @@ module.exports = {
             '@babel/preset-typescript',
           ],
           plugins: [
-            require.resolve('react-refresh/babel'),
-            '@babel/plugin-transform-runtime'
-          ], // * 热更新模块
+            require.resolve('react-refresh/babel'), // * 热更新模块
+            '@babel/plugin-transform-runtime', // * 开启可以 async await
+          ],
           sourceMaps: 'inline',
-          sourceType: 'unambiguous'
+          sourceType: 'module', // * 开启 async await 必须开启这个 https://babeljs.io/docs/en/options
         },
       },
       {

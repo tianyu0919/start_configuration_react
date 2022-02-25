@@ -55,7 +55,7 @@ module.exports = {
             '@babel/plugin-transform-runtime', // * 开启可以 async await
           ],
           sourceMaps: 'inline',
-          sourceType: 'module', // * 开启 async await 必须开启这个 https://babeljs.io/docs/en/options
+          sourceType: 'unambiguous', // * 开启 async await 必须开启这个 https://babeljs.io/docs/en/options
         },
       },
       {

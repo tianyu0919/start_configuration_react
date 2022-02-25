@@ -7,18 +7,18 @@ interface routesProps {
 
 function GetElement(props: { src: string }): any {
   console.log(props);
-  const { src } = props;
-  return new Promise(async (res) => {
-    let data = await import(`./pages/${src}`);
-    if (data.default) {
-      console.log(data.default);
-      // res(data.default);
+  // const { src } = props;
+  // return new Promise(async (res) => {
+  //   let data = await import(`./pages/${src}`);
+  //   if (data.default) {
+  //     console.log(data.default);
+  //     // res(data.default);
 
-      // res(React.createElement(data.default));
-      res(<div>111</div>)
-    }
-    res(<div>没有找到</div>)
-  })
+  //     // res(React.createElement(data.default));
+  //     res(<div>111</div>)
+  //   }
+  //   res(<div>没有找到</div>)
+  // })
   return <div>xx</div>
 }
 

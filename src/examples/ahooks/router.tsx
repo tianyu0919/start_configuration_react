@@ -5,6 +5,8 @@ interface routesProps {
   page: any;
 }
 
+import About from './pages/about';
+
 function GetElement(props: { src: string }): any {
   console.log(props);
   // const { src } = props;
@@ -29,7 +31,7 @@ const routes: RouteObject[] = [
   },
   {
     path: '/about',
-    element: () => import('./pages/about'),
+    element: <About />,
   },
   {
     path: '*',

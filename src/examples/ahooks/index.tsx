@@ -16,7 +16,7 @@ function AHooks() {
 function Content() {
   const navigate = useNavigate();
   const elements = useRoutes(routerItems);
-  console.log(elements)
+  // console.log(elements)
 
   useEffect(() => {
     // console.log(routerItems)

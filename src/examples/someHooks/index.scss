@@ -1,0 +1,12 @@
+.container {
+  width: 90%;
+  margin: 0px auto;
+
+  .childBox {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+}

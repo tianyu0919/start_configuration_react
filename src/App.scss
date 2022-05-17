@@ -1,7 +1,9 @@
+@import "normalize.css";
+
 .app {
   color: red;
 
-  .storage{ 
+  .storage {
     background-color: rgb(35, 84, 156);
     transform: translateY(100px);
     display: inline-block;

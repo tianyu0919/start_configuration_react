@@ -1,3 +1,8 @@
+/*
+ * @Author: 归宿
+ * @Date: 2021-12-17 15:06:47
+ * @Description: 
+ */
 import React from 'react';
 import './App.scss';
 
@@ -6,7 +11,7 @@ import './App.scss';
 // import Layout from '@examples/mingming';
 // import Layout from './remainingTime/index';
 // import Layout from '@examples/canvas';
-import Layout from '@examples/ahooks';
+import Layout from '@examples/videoCarousel';
 // import Layout from '@examples/designPatterns';
 // import Layout from '@examples/draggableElement';
 

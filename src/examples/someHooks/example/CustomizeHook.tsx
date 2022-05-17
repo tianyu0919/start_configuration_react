@@ -27,13 +27,13 @@ const useSmallWordToUpperCase: Func | xx = (word: string): string => {
 const CustomizeHook = memo(() => {
 
   const word = useSmallWordToUpperCase(smallStr);
-  console.log('重新渲染了')
+  console.log('我是%c自定义hook的打印消息', "color: red; background-color: yellow")
   return (
     <>
       <h3>CustomizeHook</h3>
       <div>
-        <span>小写的:{smallStr}</span>
-        <span>大写的:{word}</span>
+        <div>小写的:{smallStr}</div>
+        <div>大写的:{word}</div>
       </div>
     </>
   )

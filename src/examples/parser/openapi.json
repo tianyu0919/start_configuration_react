@@ -1,0 +1,1872 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Runnymede",
+    "version": "0.3.1"
+  },
+  "paths": {
+    "/runnymede/home": {
+      "get": {
+        "tags": [
+          "Portal"
+        ],
+        "summary": "Get Portal",
+        "operationId": "get_portal_runnymede_home_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/runnymede/acs/auth/token": {
+      "post": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Authenticate",
+        "operationId": "authenticate_runnymede_acs_auth_token_post",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_authenticate_runnymede_acs_auth_token_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/runnymede/acs/auth/password": {
+      "post": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Change Password",
+        "operationId": "change_password_runnymede_acs_auth_password_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Password"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/auth/profile": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Get Profile",
+        "operationId": "get_profile_runnymede_acs_auth_profile_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/assets/{asset_id}": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Read Asset",
+        "operationId": "read_asset_runnymede_acs_assets__asset_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Asset Id",
+              "type": "integer"
+            },
+            "name": "asset_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Update Asset",
+        "operationId": "update_asset_runnymede_acs_assets__asset_id__put",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Asset Id",
+              "type": "integer"
+            },
+            "name": "asset_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssetUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Delete Asset",
+        "operationId": "delete_asset_runnymede_acs_assets__asset_id__delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Asset Id",
+              "type": "integer"
+            },
+            "name": "asset_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/assets": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Read Assets",
+        "operationId": "read_assets_runnymede_acs_assets_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Read Assets Runnymede Acs Assets Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Asset"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Create Asset",
+        "operationId": "create_asset_runnymede_acs_assets_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssetCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/users/{user_id}": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Read User",
+        "operationId": "read_user_runnymede_acs_users__user_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "integer"
+            },
+            "name": "user_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Update User",
+        "operationId": "update_user_runnymede_acs_users__user_id__put",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "integer"
+            },
+            "name": "user_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Delete User",
+        "operationId": "delete_user_runnymede_acs_users__user_id__delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "integer"
+            },
+            "name": "user_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/users": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Read Users",
+        "operationId": "read_users_runnymede_acs_users_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Read Users Runnymede Acs Users Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Create User",
+        "operationId": "create_user_runnymede_acs_users_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/accesses/{access_id}": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Read Access",
+        "operationId": "read_access_runnymede_acs_accesses__access_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Access Id",
+              "type": "integer"
+            },
+            "name": "access_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Access"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Update Access",
+        "operationId": "update_access_runnymede_acs_accesses__access_id__put",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Access Id",
+              "type": "integer"
+            },
+            "name": "access_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccessUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Access"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Delete Access",
+        "operationId": "delete_access_runnymede_acs_accesses__access_id__delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Access Id",
+              "type": "integer"
+            },
+            "name": "access_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Access"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/accesses": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Read Accesses",
+        "operationId": "read_accesses_runnymede_acs_accesses_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Read Accesses Runnymede Acs Accesses Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Access"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Create Access",
+        "operationId": "create_access_runnymede_acs_accesses_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccessCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Access"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/records/{record_id}": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Read Record",
+        "operationId": "read_record_runnymede_acs_records__record_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Record Id",
+              "type": "integer"
+            },
+            "name": "record_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Record"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/records": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Read Records",
+        "operationId": "read_records_runnymede_acs_records_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Read Records Runnymede Acs Records Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/acs/assets/{asset_id}/records": {
+      "get": {
+        "tags": [
+          "Access Control Service"
+        ],
+        "summary": "Read Records By Asset Id",
+        "operationId": "read_records_by_asset_id_runnymede_acs_assets__asset_id__records_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Asset Id",
+              "type": "integer"
+            },
+            "name": "asset_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Admin Mode",
+              "type": "boolean",
+              "default": false
+            },
+            "name": "admin_mode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Read Records By Asset Id Runnymede Acs Assets  Asset Id  Records Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/runnymede/cis/dorado": {
+      "post": {
+        "tags": [
+          "Code Inspection Service"
+        ],
+        "summary": "Dorado",
+        "operationId": "dorado_runnymede_cis_dorado_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Access": {
+        "title": "Access",
+        "required": [
+          "id",
+          "user_id",
+          "asset_id",
+          "access_type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "integer"
+          },
+          "asset_id": {
+            "title": "Asset Id",
+            "type": "integer"
+          },
+          "access_type": {
+            "$ref": "#/components/schemas/AccessAccessType"
+          },
+          "access_info": {
+            "$ref": "#/components/schemas/AccessAccessInfo"
+          }
+        }
+      },
+      "AccessAccessInfo": {
+        "title": "AccessAccessInfo",
+        "required": [
+          "access_table_type"
+        ],
+        "type": "object",
+        "properties": {
+          "access_table_type": {
+            "$ref": "#/components/schemas/AccessAccessTableType"
+          },
+          "access_field_name": {
+            "title": "Access Field Name",
+            "type": "string"
+          },
+          "access_field_values": {
+            "title": "Access Field Values",
+            "type": "array",
+            "items": {}
+          }
+        }
+      },
+      "AccessAccessTableType": {
+        "title": "AccessAccessTableType",
+        "enum": [
+          "full",
+          "empty",
+          "field"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "AccessAccessType": {
+        "title": "AccessAccessType",
+        "enum": [
+          "read",
+          "write",
+          "read_u",
+          "read_v"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "AccessCreate": {
+        "title": "AccessCreate",
+        "required": [
+          "user_id",
+          "asset_id",
+          "access_type"
+        ],
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "title": "User Id",
+            "type": "integer"
+          },
+          "asset_id": {
+            "title": "Asset Id",
+            "type": "integer"
+          },
+          "access_type": {
+            "$ref": "#/components/schemas/AccessAccessType"
+          },
+          "access_info": {
+            "$ref": "#/components/schemas/AccessAccessInfo"
+          }
+        }
+      },
+      "AccessUpdate": {
+        "title": "AccessUpdate",
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "title": "User Id",
+            "type": "integer"
+          },
+          "asset_id": {
+            "title": "Asset Id",
+            "type": "integer"
+          },
+          "access_type": {
+            "$ref": "#/components/schemas/AccessAccessType"
+          },
+          "access_info": {
+            "$ref": "#/components/schemas/AccessAccessInfo"
+          }
+        }
+      },
+      "Asset": {
+        "title": "Asset",
+        "required": [
+          "id",
+          "location",
+          "platform_type",
+          "source_type",
+          "modifiers",
+          "sensitive_level"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "platform_type": {
+            "$ref": "#/components/schemas/AssetPlatformType"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/AssetSourceType"
+          },
+          "format_type": {
+            "$ref": "#/components/schemas/AssetFormatType"
+          },
+          "modifiers": {
+            "title": "Modifiers",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "original_ancestors": {
+            "title": "Original Ancestors",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "direct_ancestors": {
+            "title": "Direct Ancestors",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "sensitive_level": {
+            "$ref": "#/components/schemas/AssetSensitiveLevel"
+          },
+          "tags": {
+            "title": "Tags",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TestCase"
+            }
+          },
+          "tags123": {
+            "title": "Tags123",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCase"
+            }
+          },
+          "fields": {
+            "title": "Fields",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AssetCreate": {
+        "title": "AssetCreate",
+        "required": [
+          "location",
+          "platform_type",
+          "source_type",
+          "modifiers",
+          "sensitive_level"
+        ],
+        "type": "object",
+        "properties": {
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "platform_type": {
+            "$ref": "#/components/schemas/AssetPlatformType"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/AssetSourceType"
+          },
+          "format_type": {
+            "$ref": "#/components/schemas/AssetFormatType"
+          },
+          "modifiers": {
+            "title": "Modifiers",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "original_ancestors": {
+            "title": "Original Ancestors",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "direct_ancestors": {
+            "title": "Direct Ancestors",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "sensitive_level": {
+            "$ref": "#/components/schemas/AssetSensitiveLevel"
+          },
+          "tags": {
+            "title": "Tags",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TestCase"
+            }
+          },
+          "tags123": {
+            "title": "Tags123",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCase"
+            }
+          },
+          "fields": {
+            "title": "Fields",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AssetFormatType": {
+        "title": "AssetFormatType",
+        "enum": [
+          "csv",
+          "binary"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "AssetPlatformType": {
+        "title": "AssetPlatformType",
+        "enum": [
+          "Hive",
+          "HDFS"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "AssetSensitiveLevel": {
+        "title": "AssetSensitiveLevel",
+        "enum": [
+          "L1",
+          "L2",
+          "L3",
+          "L4"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "AssetSourceType": {
+        "title": "AssetSourceType",
+        "enum": [
+          "business",
+          "open",
+          "generated"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "AssetUpdate": {
+        "title": "AssetUpdate",
+        "type": "object",
+        "properties": {
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "platform_type": {
+            "$ref": "#/components/schemas/AssetPlatformType"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/AssetSourceType"
+          },
+          "format_type": {
+            "$ref": "#/components/schemas/AssetFormatType"
+          },
+          "modifiers": {
+            "title": "Modifiers",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "original_ancestors": {
+            "title": "Original Ancestors",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "direct_ancestors": {
+            "title": "Direct Ancestors",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "sensitive_level": {
+            "$ref": "#/components/schemas/AssetSensitiveLevel"
+          },
+          "tags": {
+            "title": "Tags",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TestCase"
+            }
+          },
+          "tags123": {
+            "title": "Tags123",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCase"
+            }
+          },
+          "fields": {
+            "title": "Fields",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Body_authenticate_runnymede_acs_auth_token_post": {
+        "title": "Body_authenticate_runnymede_acs_auth_token_post",
+        "required": [
+          "username",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "title": "Grant Type",
+            "pattern": "password",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string"
+          },
+          "scope": {
+            "title": "Scope",
+            "type": "string",
+            "default": ""
+          },
+          "client_id": {
+            "title": "Client Id",
+            "type": "string"
+          },
+          "client_secret": {
+            "title": "Client Secret",
+            "type": "string"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "Password": {
+        "title": "Password",
+        "required": [
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "password": {
+            "title": "Password",
+            "type": "string"
+          }
+        }
+      },
+      "Record": {
+        "title": "Record",
+        "required": [
+          "id",
+          "operator_id",
+          "operand_table",
+          "operand_id",
+          "operation_type",
+          "operation_status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "operator_id": {
+            "title": "Operator Id",
+            "type": "integer"
+          },
+          "operand_table": {
+            "$ref": "#/components/schemas/RecordOperandTable"
+          },
+          "operand_id": {
+            "title": "Operand Id",
+            "type": "integer"
+          },
+          "operation_type": {
+            "$ref": "#/components/schemas/RecordOperationType"
+          },
+          "operation_info": {
+            "title": "Operation Info",
+            "type": "object"
+          },
+          "operation_status": {
+            "$ref": "#/components/schemas/RecordOperationStatus"
+          },
+          "operation_status_info": {
+            "title": "Operation Status Info",
+            "type": "string"
+          }
+        }
+      },
+      "RecordOperandTable": {
+        "title": "RecordOperandTable",
+        "enum": [
+          "asset",
+          "user",
+          "access"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "RecordOperationStatus": {
+        "title": "RecordOperationStatus",
+        "enum": [
+          "success",
+          "failure"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "RecordOperationType": {
+        "title": "RecordOperationType",
+        "enum": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "TestCase": {
+        "title": "TestCase",
+        "required": [
+          "int_value",
+          "string_value"
+        ],
+        "type": "object",
+        "properties": {
+          "int_value": {
+            "title": "Int Value",
+            "type": "integer"
+          },
+          "string_value": {
+            "title": "String Value",
+            "type": "string"
+          }
+        }
+      },
+      "Token": {
+        "title": "Token",
+        "required": [
+          "access_token",
+          "token_type"
+        ],
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "title": "Access Token",
+            "type": "string"
+          },
+          "token_type": {
+            "title": "Token Type",
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "title": "User",
+        "required": [
+          "id",
+          "name",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          }
+        }
+      },
+      "UserCreate": {
+        "title": "UserCreate",
+        "required": [
+          "name",
+          "role",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string"
+          }
+        }
+      },
+      "UserRole": {
+        "title": "UserRole",
+        "enum": [
+          "admin",
+          "common",
+          "assistant"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "UserUpdate": {
+        "title": "UserUpdate",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {},
+            "tokenUrl": "/runnymede/acs/auth/token"
+          }
+        }
+      }
+    }
+  }
+}

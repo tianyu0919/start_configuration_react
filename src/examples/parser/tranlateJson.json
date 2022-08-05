@@ -1,0 +1,487 @@
+{
+  "assets": {
+    "responses": {
+      "id": {
+        "type": "integer",
+        "requiredField": true
+      },
+      "location": {
+        "type": "string",
+        "requiredField": true
+      },
+      "platform_type": {
+        "type": "enum",
+        "value": [
+          "Hive",
+          "HDFS"
+        ],
+        "requiredField": true
+      },
+      "source_type": {
+        "type": "enum",
+        "value": [
+          "business",
+          "open",
+          "generated"
+        ],
+        "requiredField": true
+      },
+      "format_type": {
+        "type": "enum",
+        "value": [
+          "csv",
+          "binary"
+        ]
+      },
+      "modifiers": {
+        "type": "array",
+        "itemsType": "integer",
+        "requiredField": true
+      },
+      "original_ancestors": {
+        "type": "array",
+        "itemsType": "integer"
+      },
+      "direct_ancestors": {
+        "type": "array",
+        "itemsType": "integer"
+      },
+      "sensitive_level": {
+        "type": "enum",
+        "value": [
+          "L1",
+          "L2",
+          "L3",
+          "L4"
+        ],
+        "requiredField": true
+      },
+      "tags": {
+        "type": "object",
+        "props": {
+          "int_value": {
+            "type": "integer",
+            "requiredField": true
+          },
+          "string_value": {
+            "type": "string",
+            "requiredField": true
+          }
+        }
+      },
+      "tags123": {
+        "type": "array",
+        "itemsType": {
+          "int_value": {
+            "type": "integer",
+            "requiredField": true
+          },
+          "string_value": {
+            "type": "string",
+            "requiredField": true
+          }
+        }
+      },
+      "fields": {
+        "type": "object"
+      }
+    },
+    "requestBody": {
+      "post": {
+        "location": {
+          "type": "string",
+          "requiredField": true
+        },
+        "platform_type": {
+          "type": "enum",
+          "value": [
+            "Hive",
+            "HDFS"
+          ],
+          "requiredField": true
+        },
+        "source_type": {
+          "type": "enum",
+          "value": [
+            "business",
+            "open",
+            "generated"
+          ],
+          "requiredField": true
+        },
+        "format_type": {
+          "type": "enum",
+          "value": [
+            "csv",
+            "binary"
+          ]
+        },
+        "modifiers": {
+          "type": "array",
+          "itemsType": "integer",
+          "requiredField": true
+        },
+        "original_ancestors": {
+          "type": "array",
+          "itemsType": "integer"
+        },
+        "direct_ancestors": {
+          "type": "array",
+          "itemsType": "integer"
+        },
+        "sensitive_level": {
+          "type": "enum",
+          "value": [
+            "L1",
+            "L2",
+            "L3",
+            "L4"
+          ],
+          "requiredField": true
+        },
+        "tags": {
+          "type": "object",
+          "props": {
+            "int_value": {
+              "type": "integer",
+              "requiredField": true
+            },
+            "string_value": {
+              "type": "string",
+              "requiredField": true
+            }
+          }
+        },
+        "tags123": {
+          "type": "array",
+          "itemsType": {
+            "int_value": {
+              "type": "integer",
+              "requiredField": true
+            },
+            "string_value": {
+              "type": "string",
+              "requiredField": true
+            }
+          }
+        },
+        "fields": {
+          "type": "object"
+        }
+      },
+      "put": {
+        "location": {
+          "type": "string"
+        },
+        "platform_type": {
+          "type": "enum",
+          "value": [
+            "Hive",
+            "HDFS"
+          ]
+        },
+        "source_type": {
+          "type": "enum",
+          "value": [
+            "business",
+            "open",
+            "generated"
+          ]
+        },
+        "format_type": {
+          "type": "enum",
+          "value": [
+            "csv",
+            "binary"
+          ]
+        },
+        "modifiers": {
+          "type": "array",
+          "itemsType": "integer"
+        },
+        "original_ancestors": {
+          "type": "array",
+          "itemsType": "integer"
+        },
+        "direct_ancestors": {
+          "type": "array",
+          "itemsType": "integer"
+        },
+        "sensitive_level": {
+          "type": "enum",
+          "value": [
+            "L1",
+            "L2",
+            "L3",
+            "L4"
+          ]
+        },
+        "tags": {
+          "type": "object",
+          "props": {
+            "int_value": {
+              "type": "integer",
+              "requiredField": true
+            },
+            "string_value": {
+              "type": "string",
+              "requiredField": true
+            }
+          }
+        },
+        "tags123": {
+          "type": "array",
+          "itemsType": {
+            "int_value": {
+              "type": "integer",
+              "requiredField": true
+            },
+            "string_value": {
+              "type": "string",
+              "requiredField": true
+            }
+          }
+        },
+        "fields": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "records": {
+    "responses": {
+      "id": {
+        "type": "integer",
+        "requiredField": true
+      },
+      "operator_id": {
+        "type": "integer",
+        "requiredField": true
+      },
+      "operand_table": {
+        "type": "enum",
+        "value": [
+          "asset",
+          "user",
+          "access"
+        ],
+        "requiredField": true
+      },
+      "operand_id": {
+        "type": "integer",
+        "requiredField": true
+      },
+      "operation_type": {
+        "type": "enum",
+        "value": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ],
+        "requiredField": true
+      },
+      "operation_info": {
+        "type": "object"
+      },
+      "operation_status": {
+        "type": "enum",
+        "value": [
+          "success",
+          "failure"
+        ],
+        "requiredField": true
+      },
+      "operation_status_info": {
+        "type": "string"
+      }
+    },
+    "requestBody": {
+      "post": null,
+      "put": null
+    }
+  },
+  "users": {
+    "responses": {
+      "id": {
+        "type": "integer",
+        "requiredField": true
+      },
+      "name": {
+        "type": "string",
+        "requiredField": true
+      },
+      "role": {
+        "type": "enum",
+        "value": [
+          "admin",
+          "common",
+          "assistant"
+        ],
+        "requiredField": true
+      }
+    },
+    "requestBody": {
+      "post": {
+        "name": {
+          "type": "string",
+          "requiredField": true
+        },
+        "role": {
+          "type": "enum",
+          "value": [
+            "admin",
+            "common",
+            "assistant"
+          ],
+          "requiredField": true
+        },
+        "password": {
+          "type": "string",
+          "requiredField": true
+        }
+      },
+      "put": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "enum",
+          "value": [
+            "admin",
+            "common",
+            "assistant"
+          ]
+        }
+      }
+    }
+  },
+  "accesses": {
+    "responses": {
+      "id": {
+        "type": "integer",
+        "requiredField": true
+      },
+      "user_id": {
+        "type": "integer",
+        "requiredField": true
+      },
+      "asset_id": {
+        "type": "integer",
+        "requiredField": true
+      },
+      "access_type": {
+        "type": "enum",
+        "value": [
+          "read",
+          "write",
+          "read_u",
+          "read_v"
+        ],
+        "requiredField": true
+      },
+      "access_info": {
+        "type": "object",
+        "props": {
+          "access_table_type": {
+            "type": "enum",
+            "value": [
+              "full",
+              "empty",
+              "field"
+            ],
+            "requiredField": true
+          },
+          "access_field_name": {
+            "type": "string"
+          },
+          "access_field_values": {
+            "type": "array",
+            "itemsType": "object"
+          }
+        }
+      }
+    },
+    "requestBody": {
+      "post": {
+        "user_id": {
+          "type": "integer",
+          "requiredField": true
+        },
+        "asset_id": {
+          "type": "integer",
+          "requiredField": true
+        },
+        "access_type": {
+          "type": "enum",
+          "value": [
+            "read",
+            "write",
+            "read_u",
+            "read_v"
+          ],
+          "requiredField": true
+        },
+        "access_info": {
+          "type": "object",
+          "props": {
+            "access_table_type": {
+              "type": "enum",
+              "value": [
+                "full",
+                "empty",
+                "field"
+              ],
+              "requiredField": true
+            },
+            "access_field_name": {
+              "type": "string"
+            },
+            "access_field_values": {
+              "type": "array",
+              "itemsType": "object"
+            }
+          }
+        }
+      },
+      "put": {
+        "user_id": {
+          "type": "integer"
+        },
+        "asset_id": {
+          "type": "integer"
+        },
+        "access_type": {
+          "type": "enum",
+          "value": [
+            "read",
+            "write",
+            "read_u",
+            "read_v"
+          ]
+        },
+        "access_info": {
+          "type": "object",
+          "props": {
+            "access_table_type": {
+              "type": "enum",
+              "value": [
+                "full",
+                "empty",
+                "field"
+              ],
+              "requiredField": true
+            },
+            "access_field_name": {
+              "type": "string"
+            },
+            "access_field_values": {
+              "type": "array",
+              "itemsType": "object"
+            }
+          }
+        }
+      }
+    }
+  }
+}

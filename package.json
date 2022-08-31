@@ -95,7 +95,7 @@
     ],
     "globals": {},
     "rules": {
-      "no-unused-vars": 1,
+      "no-unused-vars": 0,
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn"
     }

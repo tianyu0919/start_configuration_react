@@ -1,8 +1,22 @@
+/*
+ * @Author: 归宿
+ * @Date: 2022-05-17 20:22:37
+ * @Description: 
+ */
 import React, { FC, useState, memo, useCallback, useMemo } from 'react';
 import styles from './index.scss';
 import { Button } from 'antd';
 
 import CustomizeHook from './example/CustomizeHook';
+
+import Styled from './styled';
+
+const StyledButton = Styled.button`
+  color: red;
+  background: ${(props: any) => props.primary ? 'primary' : ''};
+`;
+
+console.log(StyledButton);
 
 interface childProps {
   onSetNum: () => void;
@@ -44,8 +58,7 @@ const SomeHooks: FC = () => {
   }, [])
 
   return <div className={styles.container}>
-    <h2>我是父组件当前数字：{num}
-    </h2>
+    <h2>我是父组件当前数字：{num}</h2>
     <Button onClick={onSetNum}>父组件增加</Button>
     <div className={styles.childBox}>
       <span>没有任何参数的子组件</span>
@@ -61,6 +74,11 @@ const SomeHooks: FC = () => {
     </div>
     <div className={styles.childBox}>
       <CustomizeHook />
+    </div>
+    <h2>Styled组件</h2>
+    <div>
+      <StyledButton primary>你好吗</StyledButton>
+      {/* {StyledButton} */}
     </div>
   </div>
 }

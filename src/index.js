@@ -10,7 +10,7 @@ import 'antd/dist/antd.css';
 
 import App from './App.tsx';
 
-const root = createRoot(document.querySelector('#root'));
+const root = createRoot(document.querySelector('#router-view'));
 
 root.render(<App />);
 

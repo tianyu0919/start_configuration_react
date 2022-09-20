@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -13,6 +15,7 @@ module.exports = {
     path: path.resolve(__dirname, '../build'),
     filename: 'js/[name].bundle.js',
     publicPath: '/',
+    // publicPath: 'http://localhost:3000', // * 使用乾坤的时候，配置为网络请求路径
   },
   optimization: {
     splitChunks: {
@@ -24,6 +27,9 @@ module.exports = {
     compress: true,
     port: 3000,
     open: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
   },
   resolve: {
     alias: {
@@ -39,8 +45,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         loader: 'babel-loader',
         options: {
@@ -67,8 +72,7 @@ module.exports = {
       {
         test: /\.(css|scss|sass|less)$/,
         exclude: /node_modules/,
-        use: [
-          {
+        use: [{
             loader: MiniCssExtractPlugin.loader,
           },
           {
@@ -95,28 +99,24 @@ module.exports = {
       },
       {
         test: /\.(svg|png|jpe?g|gif)/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              outputPath: 'img',
-              publicPath: '/img',
-            },
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            outputPath: 'img',
+            publicPath: '/img',
           },
-        ],
+        }, ],
       },
       {
         test: /\.(ttf)/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'fonts',
-              publicPath: '/fonts',
-            },
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'fonts',
+            publicPath: '/fonts',
           },
-        ],
+        }, ],
       },
     ],
   },

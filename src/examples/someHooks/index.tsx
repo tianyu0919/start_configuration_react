@@ -10,6 +10,7 @@ import { Button } from 'antd';
 import CustomizeHook from './example/CustomizeHook';
 import FunctionProvider from './example/FunctionProvider';
 import ClassProvider from './example/ClassProvider';
+import FunctionComponent from './example/FunctionComponent';
 
 import ContextDemo from './example/ContextDemo';
 
@@ -23,7 +24,7 @@ const StyledButton = Styled.button`
 // * Provider 测试
 // * 当无法从 Provider 中获取到 value 的时候才会用这个 defaultValue
 const defaultValue = {
-  name: 'xx'
+  value: 0
 };
 
 const MyContext = React.createContext<any>(defaultValue);
@@ -67,8 +68,10 @@ const SomeHooks: FC = () => {
 
 
   // * 使用 useCallback 来传递给子组件
-  const onSetNum = useCallback(() => {
-    setNum(num => num + 1)
+  const onSetNum = useCallback((type = 1) => () => {
+    setNum(num => {
+      return type === 1 ? num += 1 : num -= 1;
+    })
   }, []);
 
   // * 使用 useMemo 来传递给子组件
@@ -100,20 +103,22 @@ const SomeHooks: FC = () => {
         <StyledButton primary>你好吗</StyledButton>
         {/* {StyledButton} */}
       </div>
-
       <div>
         <h2>Provider</h2>
         <div className={styles.box}>
-          <MyContext.Provider value={2}>
+          <MyContext.Provider value={{ value: num, add: onSetNum(1), decrease: onSetNum(-1) }}>
             <ClassProvider />
           </MyContext.Provider>
         </div>
         <div className={styles.box}>
-          <MyContext.Provider value={num}>
+          <MyContext.Provider value={{ value: num, add: onSetNum(1), decrease: onSetNum(-1) }}>
             <MyContext.Consumer>
-              {value => <FunctionProvider context={value} />}
+              {props => <FunctionProvider context={props} />}
             </MyContext.Consumer>
           </MyContext.Provider>
+        </div>
+        <div className={styles.box}>
+          <FunctionComponent context={{ value: num, add: onSetNum(1), decrease: onSetNum(-1) }} />
         </div>
         <div className={styles.box}>
           <ContextDemo />

@@ -1,3 +1,9 @@
+/*
+ * @Author: 归宿
+ * @Date: 2022-02-08 17:46:16
+ * @Description: 连线粒子
+ */
+
 import React, { useEffect, useRef } from 'react';
 import style from './index.scss';
 
